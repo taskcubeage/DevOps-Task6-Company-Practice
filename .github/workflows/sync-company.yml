@@ -23,11 +23,12 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
 
-      - name: Add Company Repository
+      - name: Show Git Remotes
         run: |
-          git remote add company https://x-access-token:${{ secrets.COMPANY_PAT }}@github.com/AnushkaTakawale/DevOps-Task6-Company-Practice.git
           git remote -v
 
       - name: Push Development Branch to Company
+        env:
+          TOKEN: ${{ secrets.COMPANY_PAT }}
         run: |
-          git push company development:development
+          git push https://x-access-token:${TOKEN}@github.com/AnushkaTakawale/DevOps-Task6-Company-Practice.git development:development
