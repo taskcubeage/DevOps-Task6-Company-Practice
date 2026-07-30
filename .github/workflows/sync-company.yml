@@ -1,0 +1,32 @@
+name: Sync Team Development to Company
+
+on:
+  push:
+    branches:
+      - development
+
+permissions:
+  contents: write
+
+jobs:
+  sync-company:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Team Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+      - name: Add Company Repository
+        run: |
+          git remote add company https://x-access-token:${{ secrets.COMPANY_PAT }}@github.com/AnushkaTakawale/DevOps-Task6-Company-Practice.git
+
+      - name: Push Development Branch to Company
+        run: |
+          git push company development:development
