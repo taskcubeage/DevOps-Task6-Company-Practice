@@ -24,8 +24,9 @@ jobs:
           git config --global user.email "github-actions@github.com"
 
       - name: Add Company Repository
-        run: |
-          git remote add company https://x-access-token:${{ secrets.COMPANY_PAT }}@github.com/AnushkaTakawale/DevOps-Task6-Company-Practice.git
+ run: |
+    git remote add company https://x-access-token:${{ secrets.COMPANY_PAT }}@github.com/AnushkaTakawale/DevOps-Task6-Company-Practice.git
+    git remote -v
 
       - name: Push Development Branch to Company
         run: |
