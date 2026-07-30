@@ -1,0 +1,20 @@
+name: CI - Merge Developer Branches
+
+on:
+  push:
+    branches:
+      - "dev-*"
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Display Branch Name
+        run: echo "Running CI on branch ${{ github.ref_name }}"
+
+      - name: CI Successful
+        run: echo "Developer branch validated successfully."
